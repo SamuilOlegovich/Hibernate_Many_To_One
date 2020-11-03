@@ -26,9 +26,19 @@ public class CarDAO implements DAO<Car, Integer> {
 
     @Override
     public void create(@NotNull final Car car) {
+        /**
+         * создать сессию (открываем ворота для работы..)
+         * сессия сама не потокобезопасная  */
         try (final Session session = factory.openSession()) {
+            /**
+             * начать транзакцию (либо записали что-то либо нет)
+             * если что-то произойдет в этот мометн - то все изменения откатятся    */
             session.beginTransaction();
+            /**
+             * создаем новый объект    */
             session.save(car);
+            /**
+             * получаем транзакцию и делаем коммит  */
             session.getTransaction().commit();
         }
     }
@@ -40,6 +50,14 @@ public class CarDAO implements DAO<Car, Integer> {
         try (final Session session = factory.openSession()) {
             final Car result = session.get(Car.class, id);
             if (result != null) {
+                /**
+                 * Когда читаем данные, данные не достаются каскадно.
+                 * В итоге экономя ресурс нам выдаст только тот объект который мы запрашивали.
+                 * При попытке взять и другой, в нашем случаи мотор ролучим ошибкую
+                 * для того что бы все же забрать нам нужные поля мы используем следующий метод.
+                 * И так нужно проделать и дальше если о объекта мотор есть еще
+                 * какие-то поля с объектам которые надо загрузить.
+                 * Одним словом проделываем ко всем полям которые надо загружать во всех вложеных обектах.  */
                 Hibernate.initialize(result.getEngine());
             }
             return result;

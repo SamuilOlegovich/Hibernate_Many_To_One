@@ -2,54 +2,83 @@ package hibernate;
 
 import org.hibernate.cfg.Configuration;
 import org.hibernate.SessionFactory;
-import hibernate.dao.EngineDAO;
 import hibernate.model.Engine;
+import hibernate.dao.CarDAO;
+import hibernate.model.Car;
 import hibernate.dao.DAO;
 
 
 
 public class Main {
+    private static Integer idNewCars;
 
     public static void main(String[] args) {
         SessionFactory factory = null;
-
         try {
-//            factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory(); // если не находит файл
             factory = new Configuration().configure().buildSessionFactory();
-            DAO<Engine, String> engineDAO = new EngineDAO(factory);
-
+            DAO<Car, Integer> dao = new CarDAO(factory);
             /**
-             * записываем в базу */
-            final Engine engine = new Engine();
-            engine.setModel("engine_model_03");
-            engine.setPower(12345);
-            engineDAO.create(engine);
-
-            /**
-             *  читаем из базы  */
-            final Engine result = engineDAO.read("engine_model_03");
-            System.out.println("\n  Created : " + result + "\n");
-
-            /**
-             * обновляем данные в базе (прежде надо достать обновляемые данные) */
-            result.setPower(54321);
-            engineDAO.update(result);
-            /**
-             * и выводим результат обновления   */
-            final Engine update = engineDAO.read("engine_model_03");
-            System.out.println("\n  Updated : " + update + "\n");
-
-            /**
-             * удаляем из базы данных   */
-            Engine engineDelete = new Engine();
-            engineDelete.setModel("engine_model_03");
-            engineDAO.delete(engineDelete);
-            // теперь пытаемся вытащить что-то по удаленному ключу, будет - Engine(model=null, power=null)
-            System.out.println("\n  Deleted : " + engineDAO.read("engine_model_03") + "\n");
+             * Раскоментируя интересующий метод помните что обращение к данным происходит по id.
+             * Убедитесь что данные для методов create update и delete существуют.  */
+            read(dao);
+            update(dao);
+            create(dao);
+            delete(dao);
         } finally {
             if (factory != null) {
                 factory.close();
             }
         }
+    }
+
+
+
+
+    private static void read(DAO<Car, Integer> carDao) {
+        final Car result = carDao.read(1);
+        System.out.println("\nRead: " + result + "\n");
+    }
+
+
+
+    private static void update(DAO<Car, Integer> carDao) {
+        final Car result = carDao.read(1);
+        result.setModel("AUDI");
+        result.getEngine().setPower(500);
+        result.getEngine().setModel("V8 TSI");
+        carDao.update(result);
+        System.out.println("\nUpdated: " + carDao.read(1) + "\n");
+    }
+
+
+
+    private static void create(DAO<Car, Integer> carDao) {
+        Car car = new Car();
+        car.setModel("Q8");
+        car.setMark("AUDI");
+        Engine engine = new Engine();
+        engine.setModel("W12 Disel");
+        engine.setPower(900);
+        car.setEngine(engine);
+        carDao.create(car);
+        idNewCars = car.getId();
+        System.out.println("\nCreated: " + carDao.read(idNewCars) + "\n");
+    }
+
+
+
+    private static void delete(DAO<Car, Integer> carDao) {
+        Car car = new Car();
+        car.setModel("Q8");
+        car.setMark("AUDI");
+        /**
+         * Можно без перечислений, удалить просто по айди --> car.setId(idNewCars);  */
+        car.setId(idNewCars);
+        Engine engine = new Engine();
+        engine.setModel("W12 Disel");
+        engine.setPower(900);
+        engine.setId(idNewCars);
+        car.setEngine(engine);
+        carDao.delete(car);
     }
 }

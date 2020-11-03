@@ -1,4 +1,3 @@
-
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC
         "-//Hibernate/Hibernate Mapping DTD//EN"
@@ -16,7 +15,12 @@
         <property name="mark" column="mark"/>
         <property name="model" column="model"/>
 
-        <!--    Прикрепляем сущьность двигателя к таблицам -->
+        <!--    Прикрепляем сущьность двигателя к таблицам
+            многие машины могут ссылаться к одному двигателю.
+            cascade="save-update - говорит о том, что мы будем делать с дочерними объектами
+            если без него - none - при запросе к таблице Car меняется только Car,
+            в другом же случаи будут обновляться и параметры двигателей
+            А так же можно прописать настройки и на удаление, так чтобы можно было удалить по айди -->
         <many-to-one name="engine" column="engine_id"
                      class="hibernate.model.Engine"
                      cascade="save-update" />

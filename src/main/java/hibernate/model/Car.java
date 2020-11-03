@@ -2,9 +2,11 @@ package hibernate.model;
 
 import lombok.*;
 
-import javax.persistence.GeneratedValue;
+//import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Id;
+//import javax.persistence.Id;
+import javax.persistence.*;
+import lombok.*;
 
 
 @Data                               // анотация выполяет роль замены гетеров и сетерв
