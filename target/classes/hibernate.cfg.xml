@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-configuration xmlns="http://www.hibernate.org/xsd/orm/cfg">
+    <session-factory>
+<!--        <property name="connection.url">jdbc:postgresql://localhost:5432/academy</property>-->
+<!--        <property name="connection.driver_class">org.postgresql.Driver</property>-->
+<!--        <property name="connection.username">postgres</property>-->
+<!--        <property name="connection.password">1</property>-->
+<!--        <property name="dialect">org.hibernate.dialect.PostgreSQL94Dialect</property>-->
+
+        <property name="connection.url">jdbc:mysql://localhost:3306/config_lesson_hibernate</property>
+<!--        <property name="connection.driver_class">org.mysql.Driver</property>-->
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">my4308854my</property>
+        <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
+<!--        true - выводит логи всех операций взаимодействия с базой, false - нет    -->
+        <property name="show_sql">false</property>
+<!--        тут прописываем адреса для каждого объекта в базе данных для них будут сделаны конфигурационные файлы
+            в папке resources .... далее повторяется структура папки java
+            в точности как расположен путь к данному файлу     -->
+        <mapping resource="hiber.model/Engine.hbm.xml" />
+    </session-factory>
+</hibernate-configuration>
