@@ -18,6 +18,6 @@
 <!--        тут прописываем адреса для каждого объекта в базе данных для них будут сделаны конфигурационные файлы
             в папке resources .... далее повторяется структура папки java
             в точности как расположен путь к данному файлу     -->
-        <mapping resource="hiber.model/Engine.hbm.xml" />
+        <mapping resource="hibernate.model/Engine.hbm.xml" />
     </session-factory>
 </hibernate-configuration>

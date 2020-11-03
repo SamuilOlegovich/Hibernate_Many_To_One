@@ -1,11 +1,11 @@
-package hiber.dao;
+package hibernate.dao;
 
 
 //import lombok.NonNull;
 import lombok.NonNull;
 import org.hibernate.SessionFactory;
 import org.hibernate.Session;
-import hiber.model.Engine;
+import hibernate.model.Engine;
 
 
 

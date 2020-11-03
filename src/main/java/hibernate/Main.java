@@ -1,10 +1,10 @@
-package hiber;
+package hibernate;
 
 import org.hibernate.cfg.Configuration;
 import org.hibernate.SessionFactory;
-import hiber.dao.EngineDAO;
-import hiber.model.Engine;
-import hiber.dao.DAO;
+import hibernate.dao.EngineDAO;
+import hibernate.model.Engine;
+import hibernate.dao.DAO;
 
 
 

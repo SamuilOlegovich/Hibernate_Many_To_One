@@ -1,4 +1,4 @@
-package hiber.dao;
+package hibernate.dao;
 
 public interface DAO<Entity, Key> {
     void create(Entity entity);

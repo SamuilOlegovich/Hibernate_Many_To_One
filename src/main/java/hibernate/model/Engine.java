@@ -1,4 +1,4 @@
-package hiber.model;
+package hibernate.model;
 
 
 import javax.persistence.*;
@@ -15,7 +15,8 @@ public class Engine {
      * если включены анотации по конструкторам, то нельзя делать ни какой другой конструктор вручную
      * название полей как и у базы  */
     @Id
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE) работает в postgresql - генерит уникалюную строку
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
     private String model;
     private int power;
 }

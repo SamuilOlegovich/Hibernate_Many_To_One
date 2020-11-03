@@ -4,10 +4,14 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping">
 
-    <class name="hiber.model.Engine" table="engines">
-<!--    name - относится к названию полей в классе и должны совпадать
-        column - относится к полям базы данных и должны совпадать    -->
-        <id name="model" column="model"/>
+    <class name="hibernate.model.Engine" table="engines">
+    <!--    name - относится к названию полей в классе и должны совпадать
+            column - относится к полям базы данных и должны совпадать    -->
+        <id name = "id" type = "int" column = "id">
+            <generator class="identity"/>
+        </id>
+
+        <property name="model" column="model"/>
         <property name="power" column="power"/>
     </class>
 </hibernate-mapping>

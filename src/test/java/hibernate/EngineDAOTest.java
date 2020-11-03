@@ -1,10 +1,10 @@
-package hiber;
+package hibernate;
 
 import org.hibernate.cfg.Configuration;
 import org.hibernate.SessionFactory;
-import hiber.dao.EngineDAO;
-import hiber.model.Engine;
-import hiber.dao.DAO;
+import hibernate.dao.EngineDAO;
+import hibernate.model.Engine;
+import hibernate.dao.DAO;
 import org.junit.*;
 
 import static org.hamcrest.core.Is.is;
@@ -36,8 +36,8 @@ public class EngineDAOTest {
     }
 
     /**
-     * @see hiber.dao.EngineDAO#create(Engine).
-     * @see hiber.dao.EngineDAO#read(String).   */
+     * @see hibernate.dao.EngineDAO#create(Engine).
+     * @see hibernate.dao.EngineDAO#read(String).   */
     @Test
     public void whenCreateEngineThenEngineIsExist() {
         engineDAO.create(testEngine);
@@ -46,7 +46,7 @@ public class EngineDAOTest {
     }
 
     /**
-     * @see hiber.dao.EngineDAO#update(Engine). */
+     * @see hibernate.dao.EngineDAO#update(Engine). */
     @Test
     public void whenEngineUpdateThenPowerHasNewValue() {
         engineDAO.create(testEngine);
@@ -57,7 +57,7 @@ public class EngineDAOTest {
     }
 
     /**
-     * @see hiber.dao.EngineDAO#delete(Engine). */
+     * @see hibernate.dao.EngineDAO#delete(Engine). */
     @Test
     public void whenEngineDeleteThenEngineNotExist() {
         engineDAO.create(testEngine);
