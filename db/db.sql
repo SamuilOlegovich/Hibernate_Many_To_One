@@ -30,6 +30,7 @@ INSERT INTO  cars (mark, model, engine_id) VALUES ('car_test', 'test_model', 1);
 /*
 
 --Тоже самое но для MySQL
+CREATE SCHEMA `many_to_one_lesson` ;
 CREATE TABLE `many_to_one_lesson`.`engines` (
   `id`      INT NOT NULL AUTO_INCREMENT,
   `model`   VARCHAR(25) NOT NULL,
