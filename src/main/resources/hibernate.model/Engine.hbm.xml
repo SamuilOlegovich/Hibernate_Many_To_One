@@ -4,6 +4,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping">
 
+    <!--    Путь где лежит таблица и название таблицы   -->
     <class name="hibernate.model.Engine" table="engines">
     <!--    name - относится к названию полей в классе и должны совпадать
             column - относится к полям базы данных и должны совпадать    -->
